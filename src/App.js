@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./Components/Header";
+import CoinFlip from "./Components/CoinFlip";
+import Result from "./Components/Result";
 
 function App() {
+  const [result, setResult] = useState(null);
+  const [amount, setAmount] = useState("0");
+  const [side, setSide] = useState(true); // true for heads, false for tails
+  const contractAddress = "0xd5DA891E310F8395C1497A22e7B728943F6D6F5F";
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <CoinFlip
+        contractAddress={contractAddress}
+        setResult={setResult}
+        setAmount={setAmount}
+        setSide={setSide}
+      />
+      <Result result={result} amount={amount} side={side} />
     </div>
   );
 }
